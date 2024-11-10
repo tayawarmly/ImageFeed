@@ -37,10 +37,9 @@
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="3 ноября 2024" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oJJ-48-4x5" userLabel="Date Label">
-                                                    <rect key="frame" x="16" y="145" width="152" height="18"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3 ноября 2024" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oJJ-48-4x5" userLabel="Date Label">
+                                                    <rect key="frame" x="24" y="141" width="92" height="18"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="152" id="Vz8-zL-4nn"/>
                                                         <constraint firstAttribute="height" constant="18" id="fNa-Ob-Mw3"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
@@ -48,7 +47,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kmi-vN-lOp">
-                                                    <rect key="frame" x="343" y="0.0" width="42" height="42"/>
+                                                    <rect key="frame" x="335" y="4" width="42" height="42"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="42" id="Tbx-ua-HLJ"/>
                                                         <constraint firstAttribute="width" constant="42" id="stw-BT-4dJ"/>
@@ -59,13 +58,14 @@
                                             </subviews>
                                             <color key="backgroundColor" name="YP Black"/>
                                             <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="Kmi-vN-lOp" secondAttribute="trailing" constant="8" id="7cb-Pe-vZo"/>
-                                                <constraint firstItem="Kmi-vN-lOp" firstAttribute="top" secondItem="SDl-Kh-vuL" secondAttribute="top" id="FOu-vd-nxZ"/>
+                                                <constraint firstItem="Kmi-vN-lOp" firstAttribute="trailing" secondItem="ujS-zW-QWM" secondAttribute="trailing" id="7cb-Pe-vZo"/>
+                                                <constraint firstItem="ujS-zW-QWM" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="oJJ-48-4x5" secondAttribute="trailing" constant="8" id="DGq-D5-aeP"/>
+                                                <constraint firstItem="Kmi-vN-lOp" firstAttribute="top" secondItem="ujS-zW-QWM" secondAttribute="top" id="FOu-vd-nxZ"/>
                                                 <constraint firstItem="ujS-zW-QWM" firstAttribute="top" secondItem="SDl-Kh-vuL" secondAttribute="top" constant="4" id="Onl-Jw-IWY"/>
-                                                <constraint firstItem="oJJ-48-4x5" firstAttribute="bottom" secondItem="SDl-Kh-vuL" secondAttribute="bottomMargin" constant="8" id="S3E-ak-S1x"/>
+                                                <constraint firstItem="ujS-zW-QWM" firstAttribute="bottom" secondItem="oJJ-48-4x5" secondAttribute="bottom" constant="8" id="S3E-ak-S1x"/>
                                                 <constraint firstAttribute="trailing" secondItem="ujS-zW-QWM" secondAttribute="trailing" constant="16" id="Vi1-F2-Vkc"/>
                                                 <constraint firstAttribute="bottom" secondItem="ujS-zW-QWM" secondAttribute="bottom" constant="4" id="bm8-gY-G4C"/>
-                                                <constraint firstItem="oJJ-48-4x5" firstAttribute="leading" secondItem="SDl-Kh-vuL" secondAttribute="leadingMargin" constant="8" id="lW1-LM-Q7J"/>
+                                                <constraint firstItem="oJJ-48-4x5" firstAttribute="leading" secondItem="ujS-zW-QWM" secondAttribute="leading" constant="8" id="lW1-LM-Q7J"/>
                                                 <constraint firstItem="ujS-zW-QWM" firstAttribute="leading" secondItem="SDl-Kh-vuL" secondAttribute="leading" constant="16" id="nwS-BO-lwf"/>
                                             </constraints>
                                         </tableViewCellContentView>
