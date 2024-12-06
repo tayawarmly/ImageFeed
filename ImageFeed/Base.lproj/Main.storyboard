@@ -10,6 +10,33 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Splash View Controller-->
+        <scene sceneID="gCT-1c-WtN">
+            <objects>
+                <viewController storyboardIdentifier="SplashViewController" id="gkP-oZ-Dam" userLabel="Splash View Controller" customClass="SplashViewController" customModule="ImageFeed" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="2Wk-7j-GTb">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="Launch" translatesAutoresizingMaskIntoConstraints="NO" id="eRL-Xh-Dkn">
+                                <rect key="frame" x="159" y="387" width="75" height="78"/>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="VYQ-WW-UCY"/>
+                        <color key="backgroundColor" name="YP Black"/>
+                        <constraints>
+                            <constraint firstItem="eRL-Xh-Dkn" firstAttribute="centerX" secondItem="2Wk-7j-GTb" secondAttribute="centerX" id="r9O-Kf-lEa"/>
+                            <constraint firstItem="eRL-Xh-Dkn" firstAttribute="centerY" secondItem="2Wk-7j-GTb" secondAttribute="centerY" id="sj6-0C-Z8y"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <segue destination="t7h-hJ-eCM" kind="presentation" identifier="ShowAuthScreen" modalPresentationStyle="fullScreen" id="6Eb-4D-3KI"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SC4-do-ZjR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1318" y="-716"/>
+        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="rax-ez-cKc">
             <objects>
@@ -57,7 +84,7 @@
                                     <backgroundConfiguration key="background">
                                         <color key="backgroundColor" name="YP White"/>
                                     </backgroundConfiguration>
-                                    <fontDescription key="titleFontDescription" type="system" weight="medium" pointSize="17"/>
+                                    <fontDescription key="titleFontDescription" type="boldSystem" pointSize="17"/>
                                     <color key="baseForegroundColor" name="YP Black"/>
                                 </buttonConfiguration>
                                 <userDefinedRuntimeAttributes>
@@ -331,33 +358,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Yh-EY-3cQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="104.58015267175573" y="3.5211267605633805"/>
-        </scene>
-        <!--Splash View Controller-->
-        <scene sceneID="gCT-1c-WtN">
-            <objects>
-                <viewController storyboardIdentifier="SplashViewController" id="gkP-oZ-Dam" userLabel="Splash View Controller" customClass="SplashViewController" customModule="ImageFeed" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="2Wk-7j-GTb">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="Launch" translatesAutoresizingMaskIntoConstraints="NO" id="eRL-Xh-Dkn">
-                                <rect key="frame" x="159" y="387" width="75" height="78"/>
-                            </imageView>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="VYQ-WW-UCY"/>
-                        <color key="backgroundColor" name="YP Black"/>
-                        <constraints>
-                            <constraint firstItem="eRL-Xh-Dkn" firstAttribute="centerX" secondItem="2Wk-7j-GTb" secondAttribute="centerX" id="r9O-Kf-lEa"/>
-                            <constraint firstItem="eRL-Xh-Dkn" firstAttribute="centerY" secondItem="2Wk-7j-GTb" secondAttribute="centerY" id="sj6-0C-Z8y"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <segue destination="t7h-hJ-eCM" kind="presentation" identifier="ShowAuthScreen" modalPresentationStyle="fullScreen" id="6Eb-4D-3KI"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="SC4-do-ZjR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1318" y="-716"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="pRe-VZ-5hj">

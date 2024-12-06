@@ -82,7 +82,6 @@
 				DE29FF1E2CD01613001FC0BF /* AppDelegate.swift */,
 				DEB558082CF774A30024AE83 /* Constants.swift */,
 				DE29FF202CD01613001FC0BF /* SceneDelegate.swift */,
-				DE8699C32CFE0238003DEE8F /* SplashViewController.swift */,
 				DE29FF292CD01615001FC0BF /* LaunchScreen.storyboard */,
 				DE29FF242CD01613001FC0BF /* Main.storyboard */,
 				DE29FF272CD01615001FC0BF /* Assets.xcassets */,
@@ -90,6 +89,7 @@
 				DE29FF562CD66AA6001FC0BF /* ImagesList */,
 				DEB5580A2CF778760024AE83 /* ProfileView */,
 				DEB5580B2CF778940024AE83 /* SingleImageView */,
+				DE4965332D00D514005BF3F0 /* SplashScreen */,
 			);
 			path = ImageFeed;
 			sourceTree = "<group>";
@@ -101,6 +101,14 @@
 				DE29FF542CD66A7C001FC0BF /* ImagesListCell.swift */,
 			);
 			path = ImagesList;
+			sourceTree = "<group>";
+		};
+		DE4965332D00D514005BF3F0 /* SplashScreen */ = {
+			isa = PBXGroup;
+			children = (
+				DE8699C32CFE0238003DEE8F /* SplashViewController.swift */,
+			);
+			path = SplashScreen;
 			sourceTree = "<group>";
 		};
 		DEB5580A2CF778760024AE83 /* ProfileView */ = {

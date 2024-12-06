@@ -67,7 +67,7 @@ final class WebViewViewController: UIViewController, UIGestureRecognizerDelegate
     
     @objc
     private func didTapBackButton() {
-        print("нажатие кнопки назад")
+       //TODO: нажатие кнопки назад
     }
     
     private func code(from navigationAction: WKNavigationAction) -> String? {
