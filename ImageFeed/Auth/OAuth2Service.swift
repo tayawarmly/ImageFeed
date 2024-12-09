@@ -38,7 +38,9 @@ final class OAuth2Service {
             + "&&grant_type=authorization_code",
             relativeTo: baseURL)
         
-        guard let url else { return nil }
+        guard let url else {
+            print("Error: invalid URL")
+            return nil }
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         return request
@@ -47,6 +49,7 @@ final class OAuth2Service {
     func fetchOAuthToken (_ code: String, completion: @escaping (Result<String, Error>) -> Void) {
         guard let request = makeOAuthTokenRequest(code: code) else {
             completion(.failure(ServiceErrors.makeTokenRequestError))
+            print("URLRequest error: invalid URL")
             return
         }
         
