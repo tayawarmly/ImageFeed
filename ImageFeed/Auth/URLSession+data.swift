@@ -19,7 +19,9 @@ extension URLSession {
         for request: URLRequest,
         completion: @escaping (Result<T, Error>) -> Void
     ) -> URLSessionTask {
-        let task = dataTask(with: request) { data, response, error in
+        let decoder = JSONDecoder()
+        
+        let task = self.dataTask(with: request) { data, response, error in
             
             if let error = error {
                 DispatchQueue.main.async {
@@ -34,14 +36,14 @@ extension URLSession {
                 DispatchQueue.main.async {
                     completion(.failure(NetworkError.urlSessionError))
                 }
-                print("urlSessionError: No data or response")
+                print("URLSession: Error: No data or response")
                 return
             }
             
             if (200..<300).contains(response.statusCode) {
                 
                 do {
-                    let decodedObject = try JSONDecoder().decode(T.self, from: data)
+                    let decodedObject = try decoder.decode(T.self, from: data)
                     DispatchQueue.main.async {
                         completion(.success(decodedObject))
                     }
@@ -49,7 +51,7 @@ extension URLSession {
                     DispatchQueue.main.async {
                         completion(.failure(error))
                     }
-                    print("URlSessionError: Decoding error: (error)")
+                    print("URlSessionError: Decoding error: \(error)")
                 }
             } else {
                 DispatchQueue.main.async {

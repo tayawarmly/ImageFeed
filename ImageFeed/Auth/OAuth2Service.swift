@@ -80,10 +80,10 @@ final class OAuth2Service {
         
         let url = URL(
             string: "/oauth/token"
-            + "?client_id=(Constants.accessKey)"
-            + "&client_secret=(Constants.secretKey)"
-            + "&redirect_uri=(Constants.redirectURI)"
-            + "&code=(code)"
+            + "?client_id=\(Constants.accessKey)"
+            + "&client_secret=\(Constants.secretKey)"
+            + "&redirect_uri=\(Constants.redirectURI)"
+            + "&code=\(code)"
             + "&grant_type=authorization_code",
             relativeTo: baseURL)
         
