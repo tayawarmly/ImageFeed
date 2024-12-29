@@ -6,8 +6,12 @@
 //
 
 import UIKit
+import Kingfisher
 
 final class ProfileViewController: UIViewController {
+    
+    // Хранение обсервера, возвращаемого API
+    private var profileImageServiceObserver: NSObjectProtocol?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,7 +56,7 @@ final class ProfileViewController: UIViewController {
             userNickname.leadingAnchor.constraint(equalTo: avatarImage.leadingAnchor),
             userNickname.topAnchor.constraint(equalTo: userName.bottomAnchor, constant: 8),
             userNickname.trailingAnchor.constraint(equalTo: userName.trailingAnchor)
-
+            
         ])
         
         let userText = UILabel()
@@ -68,9 +72,8 @@ final class ProfileViewController: UIViewController {
             userText.leadingAnchor.constraint(equalTo: avatarImage.leadingAnchor),
             userText.topAnchor.constraint(equalTo: userNickname.bottomAnchor, constant: 8),
             userText.trailingAnchor.constraint(equalTo: userName.trailingAnchor)
-
+            
         ])
-        
         
         let exitButton = UIButton()
         exitButton.setImage(UIImage(named: "ExitSymbol"), for: .normal)
@@ -83,5 +86,33 @@ final class ProfileViewController: UIViewController {
             exitButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24)
         ])
         
+        profileImageServiceObserver = NotificationCenter.default
+            .addObserver(
+                forName: ProfileImageService.didChangeNotification,
+                object: nil,
+                queue: .main
+            ) { [weak self] _ in
+                guard let self = self else { return }
+                self.updateAvatar()
+            }
+        updateAvatar()
+    }
+    
+    private func updateAvatar() {
+        guard
+            let profileImageURL = ProfileImageService.shared.avatarURL,
+            let url = URL(string: profileImageURL)
+        else { return }
+        // Обновляем аватар, используя Kingfisher
+        if let imageView = view.subviews.compactMap( {$0 as? UIImageView}).first {
+            imageView.kf.setImage(
+                with: url,
+                placeholder: UIImage(named: "avatar"),
+                options: [
+                    .transition(.fade(0.2)),
+                    .cacheOriginalImage
+                ]
+            )
+        }
     }
 }
