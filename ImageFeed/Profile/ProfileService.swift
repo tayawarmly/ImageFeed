@@ -9,27 +9,14 @@ import UIKit
 
 final class ProfileService {
     static let shared = ProfileService()
-    private init() {}
-    
     private var task: URLSessionTask?
+    private(set) var profile: Profile?
+    
+    private init() {}
     
     enum ServiceError: Error {
         case invalidData
         case urlRequestError
-    }
-    
-    struct ProfileResult: Codable {
-        let username: String
-        let firstName: String?
-        let lastName: String?
-        let bio: String?
-        
-        enum CodingKeys: String, CodingKey {
-            case username
-            case firstName = "first_name"
-            case lastName = "last_name"
-            case bio
-        }
     }
     
     //получаем данные пользователя
@@ -45,7 +32,9 @@ final class ProfileService {
         }
         
         var request = URLRequest(url: url)
+        request.httpMethod = "GET"
         request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        
         return request
     }
     
@@ -64,28 +53,15 @@ final class ProfileService {
             
             switch result {
             case .success(let profileResult):
+                let profile = profileResult.fetchedProfile()
+                self?.profile = profile
                 completion(.success(profileResult))
                 
             case .failure(let error):
                 print("Profileservice: Failed to fetch profile with error: \(error)")
                 completion(.failure(ServiceError.invalidData))
             }
-            
         }
-    }
-    
-    struct Profile {
-        let username: String
-        let name: String
-        let loginName: String
-        let bio: String?
-        
-        init(from profileResult: ProfileResult) {
-            self.username = profileResult.username
-            let fullName = [profileResult.firstName, profileResult.lastName].compactMap { $0 }.joined(separator: " ")
-            self.name = fullName.isEmpty ? profileResult.username : fullName
-            self.loginName = "@\(profileResult.username)"
-            self.bio = profileResult.bio
-        }
+        task.resume()
     }
 }

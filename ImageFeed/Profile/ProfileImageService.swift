@@ -17,13 +17,9 @@ final class ProfileImageService {
     struct UserResult: Codable {
         let profileImage: ProfileImage
         
-        enum CodingKeys: String, CodingKey {
-            case profileImage = "profile_image"
+        struct ProfileImage: Codable {
+            let small: String
         }
-    }
-    
-    struct ProfileImage: Codable{
-        let small: String
     }
     
     enum ServiceErrors: Error {
@@ -31,7 +27,6 @@ final class ProfileImageService {
         case urlSessionError
         case dataError
         case notificationError
-        
     }
     
     private init() {}
@@ -50,7 +45,6 @@ final class ProfileImageService {
         
         return request
     }
-    
     
     // Получениe url аватара пользователя
     func fetchProfileImageURL(token: String, username: String,  _ completion: @escaping (Result<String, Error>) -> Void) {
@@ -75,13 +69,14 @@ final class ProfileImageService {
             case .success(let objectTask):
                 let profileImageURL = objectTask.profileImage.small
                 self?.avatarURL = profileImageURL
-              
+                
                 //публикация нотификации
                 NotificationCenter.default
                     .post(
                         name: ProfileImageService.didChangeNotification,
                         object: self,
                         userInfo: ["URL": profileImageURL])
+                
                 completion(.success(profileImageURL))
                 
             case.failure(let error):

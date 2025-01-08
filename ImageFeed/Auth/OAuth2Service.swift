@@ -76,17 +76,16 @@ final class OAuth2Service {
     }
     
     private func makeOAuthTokenRequest(code: String) -> URLRequest? {
-        guard let baseURL = URL(string: "https://unsplash.com") else { return nil }
         
         let url = URL(
-            string: "/oauth/token"
+            string: "\(Constants.defaultBaseURL)" 
+            + "/oauth/token"
             + "?client_id=\(Constants.accessKey)"
             + "&client_secret=\(Constants.secretKey)"
             + "&redirect_uri=\(Constants.redirectURI)"
             + "&code=\(code)"
-            + "&grant_type=authorization_code",
-            relativeTo: baseURL)
-        
+            + "&grant_type=authorization_code")
+       
         guard let url else {
             print("OAuth2Service: Error: invalid URL")
             return nil

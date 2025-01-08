@@ -13,7 +13,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="rax-ez-cKc">
             <objects>
-                <tabBarController storyboardIdentifier="TabBarViewController" id="d15-Gb-0K5" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="TabBarViewController" id="d15-Gb-0K5" customClass="TabBarController" customModule="ImageFeed" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="kvD-Qa-bqD">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -209,7 +209,9 @@
                             <constraint firstItem="anD-Wv-kc8" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="zbr-cU-f7H"/>
                         </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="" image="tab_editorial_active" id="f0V-8w-gb0"/>
                     <navigationItem key="navigationItem" id="uXj-PA-8g6"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="tableView" destination="anD-Wv-kc8" id="QlH-Th-bvn"/>
                         <segue destination="ggj-82-mgN" kind="presentation" identifier="ShowSingleImage" id="Q9N-fY-Can"/>
