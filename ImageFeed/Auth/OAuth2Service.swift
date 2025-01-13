@@ -33,66 +33,64 @@ final class OAuth2Service {
     private init() {}
     
     func fetchOAuthToken (_ code: String, completion: @escaping (Result<String, Error>) -> Void) {
-        assert(Thread.isMainThread)
         
-        guard lastCode != code else {
+        let fulfillCompletionOnMainThread: (Result<String, Error>) -> Void = { result in
+            DispatchQueue.main.async {
+                completion(result)
+            }
+        }
+        
+        if code == lastCode  {
             
-            completion(.failure(ServiceErrors.invalidRequest))
+            fulfillCompletionOnMainThread(.failure(ServiceErrors.invalidRequest))
             print("OAuth2Service: Invalid request")
             return
         }
+        
         task?.cancel()
         lastCode = code
         
         guard let request = makeOAuthTokenRequest(code: code) else {
-            
-            completion(.failure(ServiceErrors.makeTokenRequestError))
-            print("OAuth2Service: URLRequest error: invalid URL")
+            fulfillCompletionOnMainThread(.failure(ServiceErrors.makeTokenRequestError))
+            print("OAuth2Service: Error: invalid URL")
             return
         }
         
         let task = urlSession.objectTask(for: request) { [weak self] (result: Result<OAuthTokenResponseBody, Error>) in
-            
-            guard let self = self else {
-                completion(.failure(ServiceErrors.taskError))
-                print("OAuth2Service: Error: task error")
-                return
+            defer {
+                self?.task = nil
+                self?.lastCode = nil
             }
             
             switch result {
             case .success(let response):
-                self.tokenStorage.token = response.accessToken
-                completion(.success(response.accessToken))
+                self?.tokenStorage.token = response.accessToken
+                fulfillCompletionOnMainThread(.success(response.accessToken))
                 
             case .failure(let error):
-                completion(.failure(ServiceErrors.decodingError))
+                fulfillCompletionOnMainThread(.failure(ServiceErrors.decodingError))
                 print("OAuth2Service: Failed to parse data: \(error.localizedDescription)")
             }
         }
-        self.task = nil
-        self.lastCode = nil
         
         task.resume()
     }
+}
+
+private func makeOAuthTokenRequest(code: String) -> URLRequest? {
     
-    private func makeOAuthTokenRequest(code: String) -> URLRequest? {
-        
-        let url = URL(
-            string: "\(Constants.defaultBaseURL)" 
-            + "/oauth/token"
-            + "?client_id=\(Constants.accessKey)"
-            + "&client_secret=\(Constants.secretKey)"
-            + "&redirect_uri=\(Constants.redirectURI)"
-            + "&code=\(code)"
-            + "&grant_type=authorization_code")
-       
-        guard let url else {
-            print("OAuth2Service: Error: invalid URL")
-            return nil
-        }
-        
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        return request
+    guard let url = URL(
+        string: "https://unsplash.com/oauth/token"
+        + "?client_id=\(Constants.accessKey)"
+        + "&client_secret=\(Constants.secretKey)"
+        + "&redirect_uri=\(Constants.redirectURI)"
+        + "&code=\(code)"
+        + "&grant_type=authorization_code") else {
+        print("OAuth2Service: Error: invalid URL")
+        return nil
     }
+    
+    var request = URLRequest(url: url)
+    request.httpMethod = "POST"
+    return request
 }

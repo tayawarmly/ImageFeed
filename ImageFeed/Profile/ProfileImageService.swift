@@ -14,14 +14,6 @@ final class ProfileImageService {
     private var task: URLSessionTask?
     private var urlSession = URLSession.shared
     
-    struct UserResult: Codable {
-        let profileImage: ProfileImage
-        
-        struct ProfileImage: Codable {
-            let small: String
-        }
-    }
-    
     enum ServiceErrors: Error {
         case urlError
         case urlSessionError

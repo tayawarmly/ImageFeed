@@ -58,7 +58,7 @@ final class ProfileService {
                 completion(.success(profileResult))
                 
             case .failure(let error):
-                print("Profileservice: Failed to fetch profile with error: \(error)")
+                print("ProfileService: Failed to fetch profile with error: \(error)")
                 completion(.failure(ServiceError.invalidData))
             }
         }

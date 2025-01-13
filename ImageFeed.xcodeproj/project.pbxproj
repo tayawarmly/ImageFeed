@@ -31,6 +31,7 @@
 		DEB5580E2CF893D20024AE83 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB5580D2CF893D20024AE83 /* AuthViewController.swift */; };
 		DEB558102CF899FB0024AE83 /* WebViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB5580F2CF899FB0024AE83 /* WebViewViewController.swift */; };
 		DEB844FC2D2DDDBE00A0B35C /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB844FB2D2DDDBE00A0B35C /* ProfileModel.swift */; };
+		DEB845002D3197C000A0B35C /* ProfileImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEB844FF2D3197C000A0B35C /* ProfileImageModel.swift */; };
 		DEFBA5D22CEA638300A9D452 /* SingleImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEFBA5D12CEA638300A9D452 /* SingleImageViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -58,6 +59,7 @@
 		DEB5580D2CF893D20024AE83 /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		DEB5580F2CF899FB0024AE83 /* WebViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewViewController.swift; sourceTree = "<group>"; };
 		DEB844FB2D2DDDBE00A0B35C /* ProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModel.swift; sourceTree = "<group>"; };
+		DEB844FF2D3197C000A0B35C /* ProfileImageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageModel.swift; sourceTree = "<group>"; };
 		DEFBA5D12CEA638300A9D452 /* SingleImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleImageViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -136,6 +138,7 @@
 				DE4965392D0F3265005BF3F0 /* ProfileService.swift */,
 				DE958D462D157A970073FE9E /* ProfileImageService.swift */,
 				DEB844FB2D2DDDBE00A0B35C /* ProfileModel.swift */,
+				DEB844FF2D3197C000A0B35C /* ProfileImageModel.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -256,6 +259,7 @@
 				DEB558102CF899FB0024AE83 /* WebViewViewController.swift in Sources */,
 				DE8699BA2CFDA732003DEE8F /* OAuth2Service.swift in Sources */,
 				DE29FF212CD01613001FC0BF /* SceneDelegate.swift in Sources */,
+				DEB845002D3197C000A0B35C /* ProfileImageModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
