@@ -40,7 +40,7 @@ final class OAuth2Service {
             }
         }
         
-        if code == lastCode  {
+        guard lastCode != code else {
             
             fulfillCompletionOnMainThread(.failure(ServiceErrors.invalidRequest))
             print("OAuth2Service: Invalid request")
@@ -48,16 +48,16 @@ final class OAuth2Service {
         }
         
         task?.cancel()
-        lastCode = code
+        lastCode = code //
         
         guard let request = makeOAuthTokenRequest(code: code) else {
             fulfillCompletionOnMainThread(.failure(ServiceErrors.makeTokenRequestError))
-            print("OAuth2Service: Error: invalid URL")
+            print("OAuth2Service: Error: Failed to create URLRequest")
             return
         }
         
         let task = urlSession.objectTask(for: request) { [weak self] (result: Result<OAuthTokenResponseBody, Error>) in
-            defer {
+            DispatchQueue.main.async {
                 self?.task = nil
                 self?.lastCode = nil
             }
@@ -73,6 +73,7 @@ final class OAuth2Service {
             }
         }
         
+        self.task = task
         task.resume()
     }
 }
