@@ -17,6 +17,7 @@ final class WebViewViewController: UIViewController, UIGestureRecognizerDelegate
     
     @IBOutlet private var webView: WKWebView!
     @IBOutlet private var progressView: UIProgressView!
+    private var estimatedProgressObservation: NSKeyValueObservation?
     
     weak var delegate: WebViewViewControllerDelegate?
     
@@ -25,18 +26,18 @@ final class WebViewViewController: UIViewController, UIGestureRecognizerDelegate
         
         webView.navigationDelegate = self
         loadAuthView()
+        
+        estimatedProgressObservation = webView.observe(
+                   \.estimatedProgress,
+                    options: [],
+                   changeHandler: { [weak self] _, _ in
+                       guard let self = self else { return }
+                       self.updateProgress()
+                   })
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        webView.addObserver(
-            self,
-            forKeyPath: #keyPath(WKWebView.estimatedProgress),
-            options: .new,
-            context: nil)
-        
-        updateProgress()
         
         let navBackButton = UIBarButtonItem(
             image: UIImage(named: "nav_back_button"),
@@ -74,7 +75,7 @@ final class WebViewViewController: UIViewController, UIGestureRecognizerDelegate
         if
             let url = navigationAction.request.url,
             let urlComponents = URLComponents(string: url.absoluteString),
-            urlComponents.path == "/oauth/authorize/native",
+            urlComponents.path == Constants.authorizationURL,
             let items = urlComponents.queryItems,
             let codeItem = items.first(where: { $0.name == "code" })
         {
@@ -98,7 +99,7 @@ private extension WebViewViewController {
         ]
         
         guard let url = urlComponents?.url else {
-            print("Error: invalid URL")
+            print("WebViewViewController Error: invalid URL")
             return
         }
         
